@@ -1,0 +1,8 @@
+name: bh100
+dependencies: 
+- python=3
+- beautifulsoup4
+- requests
+- pip
+- pip:
+   - coinmarketcap
