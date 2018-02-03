@@ -11,6 +11,6 @@ setup(name='bh100',
                         'coinmarketcap',
                         'requests',
                         'beautifulsoup4']
-      python_requires='>=3'
-      entry_points='''[console_scripts]bh100=bh100:main''''
+      python_requires='>=3',
+      entry_points='''[console_scripts]bh100=bh100:main'''',
       license='MIT')
