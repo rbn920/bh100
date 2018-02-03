@@ -2,16 +2,18 @@ import coinmarketcap
 import requests
 from bs4 import BeautifulSoup
 import re
+import click
+import json
 
 
 def get_coins(quantity):
     market = coinmarketcap.Market()
     coins = market.ticker(start=0, limit=quantity)
 
-    return [{k: coin[k] for k in ('name', 'rank', 'symbol')} for coin in coins]
+    return [{k: coin[k] for k in ('id', 'name', 'rank', 'symbol')} for coin in coins]
 
 
-def get_markets(coin, quantity=1):
+def get_markets(coin, quantity):
     url = 'https://coinmarketcap.com/currencies/{}/'.format(coin)
     page = requests.get(url)
     if page.status_code == 200:
@@ -20,16 +22,34 @@ def get_markets(coin, quantity=1):
         table = soup.find('table', id='markets-table')
         table_body = table.find('tbody')
         rows = table_body.find_all('tr')
+        exchanges = []
         for row in rows[:quantity]:
             exchange = row.find_all('a', {'href': re.compile(r'/exchanges/*')})
-            print(exchange[0].text)
+            exchanges.append(exchange[0].text)
 
     else:
         print('Error reaching page')
+        exchanges = ['Error']
 
+    return exchanges
+
+
+@click.command()
+@click.option('--num_coins', prompt='How many coins would you like in the list?')
+@click.option('--num_markets', prompt='How many exchanges would you like to see for each coin?')
+def main(num_coins, num_markets):
+    print('Getting coins...')
+    coins = get_coins(num_coins)
+    for coin in coins:
+        exchanges = get_markets(coin['id'], int(num_markets))
+        coin['markets'] = exchanges
+
+    with open('results.json', 'w') as fp:
+        json.dump(coins, fp)
+
+    print('Results in results.json')
     return
 
 
 if __name__ == '__main__':
-    print(get_coins(3))
-    get_markets('bitcoin', quantity=3)
+    main()
