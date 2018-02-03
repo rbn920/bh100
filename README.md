@@ -12,3 +12,27 @@ many of the top cryptos you would like to invest in as well as where you can pur
 line tool in python.
 
 ## Usage
+Install using pip:
+```
+pip install bh100
+```
+Then just run the CLI:
+```
+bh100n 
+```
+Then just answer the questions. A JSON file named "results.json" will be created. You can open the file in a browser for easy
+viewing.
+
+## Todo
+ * Add the abilty to use "prefered" exchanges.
+ 
+## Some Packages Used
+ *  [coinmarketcap](https://github.com/barnumbirr/coinmarketcap)
+ *  [click](http://click.pocoo.org/5/)
+ *  [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
+ *  [Requests](http://docs.python-requests.org/en/master/)
+ 
+## Tips
+ * BTC:
+ * ETH:
+ * XRB/NANO:
