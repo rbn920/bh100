@@ -18,7 +18,7 @@ pip install bh100
 ```
 Then just run the CLI:
 ```
-bh100n 
+bh100
 ```
 Then just answer the questions. A JSON file named "results.json" will be created. You can open the file in a browser for easy
 viewing.
