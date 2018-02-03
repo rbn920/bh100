@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import re
 import click
 import json
+from collections import OrderedDict
 
 
 def get_coins(quantity):
@@ -23,15 +24,19 @@ def get_markets(coin, quantity):
         table_body = table.find('tbody')
         rows = table_body.find_all('tr')
         exchanges = []
-        for row in rows[:quantity]:
+        for row in rows:
             exchange = row.find_all('a', {'href': re.compile(r'/exchanges/*')})
             exchanges.append(exchange[0].text)
+
+#        for row in rows[:quantity]:
+#             exchange = row.find_all('a', {'href': re.compile(r'/exchanges/*')})
+#             exchanges.append(exchange[0].text)
 
     else:
         print('Error reaching page')
         exchanges = ['Error']
 
-    return exchanges
+    return list(OrderedDict.fromkeys(exchanges))[:quantity]
 
 
 @click.command()
@@ -43,6 +48,7 @@ def main(num_coins, num_markets):
     for coin in coins:
         exchanges = get_markets(coin['id'], int(num_markets))
         coin['markets'] = exchanges
+        coin.pop('id')
 
     with open('results.json', 'w') as fp:
         json.dump(coins, fp)
