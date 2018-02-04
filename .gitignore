@@ -25,5 +25,5 @@ wheels/
 *.egg
 MANIFEST
 
-# Results file
-results.json
+# Results files
+*.json
