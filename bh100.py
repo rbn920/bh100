@@ -53,6 +53,14 @@ def get_coins(quantity):
                  coin['symbol']) for coin in coins]
 
 
+def get_prefered_exchanges(prefered):
+    exchanges = []
+    for rank, exchange in enumerate(prefered):
+        exchanges.append(Exchange(exchange, rank + 1))
+
+    return exchanges
+
+
 def to_json(items, file_name, coins=True):
     as_dicts =[]
     for item in items:
@@ -66,14 +74,6 @@ def to_json(items, file_name, coins=True):
         json.dump(as_dicts, fp)
 
     return
-
-
-def get_prefered_exchanges(prefered):
-    exchanges = []
-    for rank, exchange in enumerate(prefered):
-        exchanges.append(Exchange(exchange, rank))
-
-    return exchanges
 
 
 @click.command()
@@ -92,6 +92,12 @@ def main():
     for coin in coins:
         for exchange in prefered_exchanges:
             exchange.in_exchange(coin)
+
+    for rank, exchange in enumerate(prefered_exchanges):
+        if rank > 0:
+            for coin in prefered_exchanges[rank - 1].coins:
+                if coin in exchange.coins:
+                    exchange.coins.remove(coin)
 
     print('Writing prefered exchange data to prefered.json')
     to_json(prefered_exchanges, 'prefered.json', coins=False)
