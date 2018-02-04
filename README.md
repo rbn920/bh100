@@ -33,6 +33,6 @@ viewing.
  *  [Requests](http://docs.python-requests.org/en/master/)
  
 ## Tips
- * BTC:
- * ETH:
- * XRB/NANO:
+ * BTC: 16XKpeFeeDJCc11eMz459mc7BhWabgFYE8
+ * ETH: 0xC41a9b23c3536aaA5D3CAF462771eBA42b157C4D
+ * XRB/NANO: xrb_39iboti6r3pwzq39aipm5a6mdcremk1izkg9tc78h99a5331be8m4n7kxmaw
