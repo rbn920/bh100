@@ -20,11 +20,11 @@ Then just run the CLI:
 ```
 bh100
 ```
-Then just answer the questions. A JSON file named "results.json" will be created. You can open the file in a browser for easy
-viewing.
+Then just answer the questions. Two JSON files will be created. One containing information for each Crypto named coins.json and a second
+showing which Cryptos are on your prefered exchanges named prefered.json. You can open the files in a web browser for easy viewing.
 
 ## Todo
- * Add the abilty to use "prefered" exchanges.
+ * Add additional output formats.
  
 ## Some Packages Used
  *  [coinmarketcap](https://github.com/barnumbirr/coinmarketcap)
