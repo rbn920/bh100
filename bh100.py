@@ -93,14 +93,31 @@ def main():
         for exchange in prefered_exchanges:
             exchange.in_exchange(coin)
 
+    in_prefered = 0
     for rank, exchange in enumerate(prefered_exchanges):
         if rank > 0:
-            for coin in prefered_exchanges[rank - 1].coins:
-                if coin in exchange.coins:
-                    exchange.coins.remove(coin)
+            for i in range(rank):
+                for coin in prefered_exchanges[i].coins:
+                    if coin in exchange.coins:
+                        exchange.coins.remove(coin)
 
-    print('Writing prefered exchange data to prefered.json')
+        in_prefered = in_prefered + len(exchange.coins)
+
+
+    other = [coin.name for coin in coins]
+    for exchange in prefered_exchanges:
+        for coin in exchange.coins:
+            while coin in other: other.remove(coin)
+
+    other_exchange = Exchange('other', 'na')
+    other_exchange.coins = other
+    prefered_exchanges.append(other_exchange)
+
+    print('Writing prefered exchange data to prefered.json...')
     to_json(prefered_exchanges, 'prefered.json', coins=False)
+
+    print('{} of {} Cryptos are in your prefered exchanges.'.format(in_prefered,
+                                                                    num_coins))
 
     return
 
