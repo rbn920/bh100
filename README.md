@@ -25,6 +25,7 @@ showing which Cryptos are on your prefered exchanges named prefered.json. You ca
 
 ## Todo
  * Add additional output formats.
+ * Show amount to send to each exchange.
  
 ## Some Packages Used
  *  [coinmarketcap](https://github.com/barnumbirr/coinmarketcap)
