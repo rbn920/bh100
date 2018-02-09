@@ -24,8 +24,10 @@ Then just answer the questions. Two JSON files will be created. One containing i
 showing which Cryptos are on your prefered exchanges named prefered.json. You can open the files in a web browser for easy viewing.
 
 ## Todo
+ * Add symbols to prefered.json output.
  * Add additional output formats.
  * Show amount to send to each exchange.
+ * Consider trying to factor in exchange and transfer fees to ensure same amount is acutally invested in each currency.
  
 ## Some Packages Used
  *  [coinmarketcap](https://github.com/barnumbirr/coinmarketcap)
